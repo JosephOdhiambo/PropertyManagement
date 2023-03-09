@@ -33,21 +33,38 @@ include('connection.php');
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <style>
-    .card-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: justify;
-}
-.card-img-top {
-  height: 200px; /* adjust this to your desired image height */
-  object-fit: cover;
-}
+  .card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+  }
 
+  .card-img-top {
+    height: 40vw;
+    object-fit: cover;
+  }
 
-  </style>
+  @media (min-width: 576px) {
+    .card-img-top {
+      height: 20vw;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .card-img-top {
+      height: 15vw;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .card-img-top {
+      height: 10vw;
+    }
+  }
+</style>
 </head> <!--Head Open  Here-->
 <body>
   <?php
@@ -72,7 +89,14 @@ include('connection.php');
     while($r_res=mysqli_fetch_assoc($sql))
     {
     ?>
-    <div class="col-sm-4 mb-4">
+<div class="container text-center" style="background-color: #f7f7f7; padding: 2vw;">
+  <div class="row">
+    <?php 
+    $sql=mysqli_query($con,"select * from rooms");
+    while($r_res=mysqli_fetch_assoc($sql))
+    {
+    ?>
+    <div class="col-md-4 mb-4">
       <div class="card h-100">
         <img src="image/rooms/<?php echo $r_res['image']; ?>" class="card-img-top" alt="Image" id="img1">
         <div class="card-body">
@@ -82,6 +106,9 @@ include('connection.php');
         </div>
       </div>
     </div>
+    <?php } ?>
+  </div>
+</div>
     <?php } ?>
   </div>
 </div>

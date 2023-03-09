@@ -2,7 +2,7 @@
 session_start();
 error_reporting(1);
 ?>
-<div class="container d-flex align-items-center justify-content-between">
+<div class="menu-bar-container container d-flex align-items-center justify-content-between">
     <h1 class="logo"><a href="../index.php">PropertyEnquiry<span>.</span>com</a></h1>
     <nav id="navbar" class="navbar">
         <ul>
@@ -12,6 +12,7 @@ error_reporting(1);
             <?php 
             if(isset($_SESSION['create_account_logged_in']) && $_SESSION['create_account_logged_in']!="")
             {
+                if(basename($_SERVER['PHP_SELF']) !== 'index.php') {  // check if the current page is not index.php
             ?>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">View Status <span
                         class="caret"></span></a>
@@ -21,7 +22,7 @@ error_reporting(1);
                     <li><a href="logout.php">Logout</a></li>
                 </ul>
             </li>
-            <?PHP } else
+            <?php } } else
             {
             ?>
             <li><a class="nav-link scrollto" href="../Login.php" title="login"><span
