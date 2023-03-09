@@ -31,24 +31,23 @@ if(isset($login))
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Online Hotel.Com</title>
+  <title>PropertyEnquiry.com</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link href="css/style.css"rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Akronim|Libre+Baskerville" rel="stylesheet">
 
-    
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -60,39 +59,81 @@ if(isset($login))
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    .card {
+      border-radius: 0;
+      border: none;
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    .card-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      object-position: center;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .fit-image {
+      object-fit: cover;
+      /* Change this property to "contain" if you want the whole image to be visible */
+      width: 200px;
+      height: 200px;
+    }
+  </style>
 </head>
+
 <body>
-<?php
+  <?php
 include('Menu Bar.php')
 ?>
-<div class="container-fluid"><!-- Primary Id-->
-  <div class="container">
-    <div class="row"><br>
-      <div class="col-sm-4"></div>
-        <div class="col-sm-4 text-center"style="box-shadow:2px 2px 2px;background-color:#f4ac41;"><br>
-
-        	<h1 align="center"><b><font style="font-family: 'Libre Baskerville', serif;text-shadow:3px 3px #000;">User Login ?</font></b></h1>
-          <img src="image/clipart/login-user-icon.png" class="img-circle" alt="Bird" width="130" height="120">
-          <?php echo @$error; ?>
-          <form method="post"><br>
-              <div class="form-group">
-                <input type="Email" class="form-control"name="eid"placeholder="Email Id" autocomplete="off"required >
-              </div>
-            <div class="form-group">
-                <input type="Password" class="form-control"name="pass"placeholder="Password" autocomplete="off"required>
+  <div class="container-fluid">
+    <!-- Primary Id-->
+    <div class="container">
+      <div class="row"><br>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 text-center">
+          <div class="card shadow">
+            <div class="card-body">
+              <h1 class="card-title">
+                <b>
+                  <font style="font-family: 'Libre Baskerville', serif;">User Login ?</font>
+                </b>
+              </h1>
+              <img src="image/clipart/login-user-icon.png" alt="Bird" class="card-img-top fit-image">
+              <?php echo @$error;?>
+              <form action="#" method="post"><br>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="eid" placeholder="Email Id" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" name="pass" placeholder="Password" required>
+                </div>
+                <input type="submit" value="Login" name="login" class="btn btn-primary btn-group btn-group-justified"
+                  required>
+                <div class="form-group forget">
+                  <a href="Forgot account.php">Forget Account</a>&nbsp; <b>|</b>&nbsp;
+                  <a href="Registation form.php">Create an Account</a>
+                </div>
+              </form>
             </div>
-          <input type="submit" value="Login" name="login" class="btn btn-primary btn-group btn-group-justified"required>
-          <div class="form-group forget">
-                <a href="Forgot account.php">Forget Account</a>&nbsp; <b>|</b>&nbsp; 
-                <a href="Registation form.php">Create an Account</a>
-            </div>
-      	</form><br>
+          </div>
         </div>
-    </div><br>
+
+      </div><br>
+    </div>
   </div>
-</div>
-<?php
+  <?php
 include('Footer.php')
 ?>
 </body>
+
 </html>
