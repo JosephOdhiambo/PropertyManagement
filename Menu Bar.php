@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$eid=$_SESSION['create_account_logged_in'];
+$eid = isset($_SESSION['create_account_logged_in']) ? $_SESSION['create_account_logged_in'] : '';
 error_reporting(1);
 ?>
 <div class="container d-flex align-items-center justify-content-between">

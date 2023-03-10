@@ -75,7 +75,7 @@
             <?php 
                 include('connection.php');
                 $room_id=$_GET['room_id'];
-                $sql=mysqli_query($con,"select * from rooms where room_id='$room_id' ");
+                $sql=mysqli_query($con,"select * from properties where property_id='$room_id' ");
                 $res=mysqli_fetch_assoc($sql);
             ?>
             <h2 class="font-weight-bold"><?php echo $res['type']; ?></h2>
@@ -105,11 +105,11 @@
                 <ul class="list-group list-group-flush">
                     <?php
                         include('connection.php');
-                        $sql1=mysqli_query($con,"select * from rooms");
+                        $sql1=mysqli_query($con,"select * from properties");
                         while($result1= mysqli_fetch_assoc($sql1))
                         {
                             echo '<li class="list-group-item">';
-                            echo '<a href="room_details.php?room_id=' . $result1['room_id'] . '">';
+                            echo '<a href="room_details.php?room_id=' . $result1['property_id'] . '">';
                             echo $result1['type'];
                             echo '</a></li>';
                         }

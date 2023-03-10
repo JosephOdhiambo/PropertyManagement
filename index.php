@@ -85,14 +85,14 @@ include('connection.php');
   <div class="container text-center" style="background-color: #f7f7f7; padding: 30px;">
   <div class="row">
     <?php 
-    $sql=mysqli_query($con,"select * from rooms");
+    $sql=mysqli_query($con,"select * from properties");
     while($r_res=mysqli_fetch_assoc($sql))
     {
     ?>
 <div class="container text-center" style="background-color: #f7f7f7; padding: 2vw;">
   <div class="row">
     <?php 
-    $sql=mysqli_query($con,"select * from rooms");
+    $sql=mysqli_query($con,"select * from properties");
     while($r_res=mysqli_fetch_assoc($sql))
     {
     ?>
@@ -102,7 +102,7 @@ include('connection.php');
         <div class="card-body">
           <h5 class="card-title text-danger"><?php echo $r_res['type']; ?></h5>
           <p class="card-text"><?php echo substr($r_res['details'],0,100); ?></p>
-          <a href="room_details.php?room_id=<?php echo $r_res['room_id']; ?>" class="btn btn-danger">Read more</a>
+          <a href="room_details.php?room_id=<?php echo $r_res['property_id']; ?>" class="btn btn-danger">Read more</a>
         </div>
       </div>
     </div>
