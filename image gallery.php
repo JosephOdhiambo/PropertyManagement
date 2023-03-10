@@ -1,3 +1,8 @@
+<?php 
+session_start();
+error_reporting(1);
+include('connection.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head><!--Head Open  Here-->
