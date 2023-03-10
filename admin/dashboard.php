@@ -53,7 +53,7 @@ if($admin=="")
           <ul class="nav nav-sidebar">
             <li><a href="dashboard.php?option=update_password">Update Password</a></li>
             <li><a href="dashboard.php?option=feedback">Feedback</a></li>
-            <li><a href="dashboard.php?option=rooms">Room</a></li>
+            <li><a href="dashboard.php?option=properties">Properties</a></li>
 			<li><a href="dashboard.php?option=booking_details">Booking Details</a></li>
       <li><a href="dashboard.php?option=user_registration">User Registration</a></li>
 			<li><a href="dashboard.php?option=slider">Slider</a></li>
@@ -96,9 +96,9 @@ else
 	{
 	include('update_password.php');	
 	}
-	else if($opt=="rooms")
+	else if($opt=="properties")
 	{
-	include('rooms.php');	
+	include('properties.php');	
 	}
 	
 	else if($opt=="add_rooms")

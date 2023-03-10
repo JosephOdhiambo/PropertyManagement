@@ -1,5 +1,21 @@
+<?php
+include('connection.php');
+// Select distinct room types from the properties table
+$sql = "SELECT DISTINCT `type` FROM `properties`";
+$result = $con->query($sql);
+
+// Build the select box options
+$options = '';
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+    $options .= '<option>' . $row["type"] . '</option>';
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Online Hotel.com</title>
   <meta charset="utf-8">
@@ -7,17 +23,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link href="css/style.css"rel="stylesheet"/>
- <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -30,8 +47,9 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 </head>
+
 <body>
-<?php 
+  <?php 
 include('Menu Bar.php');
 include('connection.php');
 if($eid=="")
@@ -63,91 +81,94 @@ if(isset($savedata))
   }
 }
 ?>
-<div class="container-fluid text-center"id="primary"><!--Primary Id-->
-  <h1>[ BOOKING Form ]</h1><br>
-  <div class="container">
-    <div class="row">
-      <?php echo @$msg; ?>
-      <!--Form Containe Start Here-->
-     <form class="form-horizontal" method="post">
-       <div class="col-sm-6">
-         <div class="form-group">
-           <div class="row">
-              <div class="control-label col-sm-4"><h4> Name :</h4></div>
+  <div class="container-fluid text-center" id="primary">
+    <!--Primary Id-->
+    <h1>[ BOOKING Form ]</h1><br>
+    <div class="container">
+      <div class="row">
+        <?php echo @$msg; ?>
+        <!--Form Containe Start Here-->
+        <form class="form-horizontal" method="post">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="row">
+                <div class="control-label col-sm-4">
+                  <h4> Name :</h4>
+                </div>
                 <div class="col-sm-8">
-                 <input type="text" value="<?php echo $result['name']; ?>" class="form-control" name="name" placeholder="Enter Your Frist Name"required>
-          </div>
-        </div>
-      </div>
+                  <input type="text" value="<?php echo $result['name']; ?>" class="form-control" name="name"
+                    placeholder="Enter Your Frist Name" required>
+                </div>
+              </div>
+            </div>
 
-        <div class="form-group">
-          <div class="row">
-           <div class="control-label col-sm-4"><h4>Email :</h4></div>
-          <div class="col-sm-8">
-              <input type="email" value="<?php echo $result['email']; ?>" class="form-control" name="email"  placeholder="Enter Your Email-Id"required/>
-          </div>
-        </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-           <div class="control-label col-sm-4"><h4>Mobile :</h4></div>
-          <div class="col-sm-8">
-              <input type="number" value="<?php echo $result['mobile']; ?>" class="form-control" name="phone" placeholder="Type Your Phone Number"required>
-          </div>
-        </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-           <div class="control-label col-sm-4"><h4>Address :</h4></div>
-          <div class="col-sm-8">
-              <textarea name="address" class="form-control" placeholder="Enter Your Address"><?php echo $result['address'];  ?></textarea>
-          </div>
-        </div>
-        </div>
-
-         <div class="form-group">
-          <div class="row">
-           <div class="control-label col-sm-4"><h4>Country</h4></div>
-          <div class="col-sm-8">
-              <input type="text" class="form-control"  value="<?php echo $result['country']; ?>" name="city" placeholder="Enter Your City Name"required>
-          </div>
-        </div>
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-           <div class="control-label col-sm-4"><h4></h4></div>
-          <div class="col-sm-8">
-              <input type="hidden" name="state" class="form-control"placeholder="Enter Your State Name"required>
-          </div>
-        </div>
-        </div>
-
-		      <div class="form-group">
-            <div class="row">
-           <div class="control-label col-sm-4"><h4></h4></div>
-          <div class="col-sm-8">
-              <input type="hidden" name="zip" class="form-control" placeholder="Enter Your Zip Code"required>
-          </div>
-        </div>
-        </div>
-        </div>
-
-           <div class="col-sm-6">
             <div class="form-group">
               <div class="row">
-                <div class="control-label col-sm-5"><h4>Room Type:</h4></div>
-                  <div class="col-sm-7">
-                <select class="form-control" name="room_type"required>
-                  <option>Deluxe Room</option>
-                  <option>Luxurious Suite</option>
-                  <option>Standard Room</option>
-                  <option>Suite Room</option>
-                  <option>Twin Deluxe Room</option>
-               </select>
+                <div class="control-label col-sm-4">
+                  <h4>Email :</h4>
+                </div>
+                <div class="col-sm-8">
+                  <input type="email" value="<?php echo $result['email']; ?>" class="form-control" name="email"
+                    placeholder="Enter Your Email-Id" required />
+                </div>
               </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="control-label col-sm-4">
+                  <h4>Mobile :</h4>
+                </div>
+                <div class="col-sm-8">
+                  <input type="number" value="<?php echo $result['mobile']; ?>" class="form-control" name="phone"
+                    placeholder="Type Your Phone Number" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="control-label col-sm-4">
+                  <h4>Address :</h4>
+                </div>
+                <div class="col-sm-8">
+                  <textarea name="address" class="form-control"
+                    placeholder="Enter Your Address"><?php echo $result['address'];  ?></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="control-label col-sm-4">
+                  <h4>Country</h4>
+                </div>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" value="<?php echo $result['country']; ?>" name="city"
+                    placeholder="Enter Your City Name" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="control-label col-sm-4">
+                  <h4></h4>
+                </div>
+                <div class="col-sm-8">
+                  <input type="hidden" name="state" class="form-control" placeholder="Enter Your State Name" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="control-label col-sm-4">
+                  <h4></h4>
+                </div>
+                <div class="col-sm-8">
+                  <input type="hidden" name="zip" class="form-control" placeholder="Enter Your Zip Code" required>
+                </div>
               </div>
             </div>
           </div>
@@ -155,53 +176,76 @@ if(isset($savedata))
           <div class="col-sm-6">
             <div class="form-group">
               <div class="row">
-                <div class="control-label col-sm-5"><h4>check In Date :</h4></div>
-                  <div class="col-sm-7">
-                  <input type="date" name="cdate" class="form-control"required>
-                  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-6">
-            <div class="form-group">
-              <div class="row">
-                 <div class="control-label col-sm-5"><h4>Check In Time:</h4></div>
-                   <div class="col-sm-7">
-                    <input type="time" name="ctime" class="form-control"required>
-                  </div>
-              </div>
-            </div>
-          </div>
-           <div class="col-sm-6">
-            <div class="form-group">
-              <div class="row">
-                <div class="control-label col-sm-5"><h4>Check Out Date :</h4></div>
+                <div class="control-label col-sm-5">
+                  <h4>Property Type:</h4>
+                </div>
                 <div class="col-sm-7">
-                  <input type="date" name="codate" class="form-control"required>
-                </div> 
+                  <select class="form-control" name="room_type" required>
+                  <?php echo $options; ?>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="row">
+                <div class="control-label col-sm-5">
+                  <h4>Enquiry Date :</h4>
+                </div>
+                <div class="col-sm-7">
+                  <input type="date" name="cdate" class="form-control" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="row">
+                <div class="control-label col-sm-5">
+                  <h4>Time of Enquiry:</h4>
+                </div>
+                <div class="col-sm-7">
+                  <input type="time" name="ctime" class="form-control" required>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <div class="row">
-                <label class="control-label col-sm-5"><h4 id="top">Occupancy :</h4></label>
+                <div class="control-label col-sm-5">
+                  <h4>Check Out Date :</h4>
+                </div>
                 <div class="col-sm-7">
-                  <div class="radio-inline"><input type="radio" value="single" name="Occupancy"required >Single</div>
+                  <input type="date" name="codate" class="form-control" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="row">
+                <label class="control-label col-sm-5">
+                  <h4 id="top">Occupancy :</h4>
+                </label>
+                <div class="col-sm-7">
+                  <div class="radio-inline"><input type="radio" value="single" name="Occupancy" required>Single</div>
                   <div class="radio-inline"><input type="radio" value="twin" name="Occupancy" required>Twin</div>
                   <div class="radio-inline"><input type="radio" value="dubble" name="Occupancy" required>Dubble</div>
-                </div> 
+                </div>
               </div>
             </div>
-            <input type="submit"value="submit" name="savedata" class="btn btn-danger"required/>
+            <input type="submit" value="submit" name="savedata" class="btn btn-danger" required />
           </div>
-          </form><br>
-        </div>
+        </form><br>
       </div>
     </div>
   </div>
-<?php
+  </div>
+  <?php
 include('Footer.php')
 ?>
   <!-- Vendor JS Files -->
@@ -217,4 +261,5 @@ include('Footer.php')
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>
