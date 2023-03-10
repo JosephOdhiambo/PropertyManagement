@@ -57,32 +57,115 @@ if(isset($login))
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <style>
-    .card {
-      border-radius: 0;
-      border: none;
-    }
+  /* Card styling */
+.card {
+  border-radius: 0;
+  border: none;
+}
 
-    .card-body {
-      padding: 2rem;
-    }
+.card-body {
+  padding: 2rem;
+}
 
-    .card-title {
-      margin-bottom: 1.5rem;
-    }
+.card-title {
+  margin-bottom: 1.5rem;
+}
 
-    .card-img-top {
-      object-fit: cover;
-      object-position: center;
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
+.card-img-top {
+  object-fit: cover;
+  object-position: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 
-    .fit-image {
-      object-fit: cover;
-      /* Change this property to "contain" if you want the whole image to be visible */
-      width: 200px;
-      height: 200px;
-    }
+.fit-image {
+  object-fit: cover;
+  /* Change this property to "contain" if you want the whole image to be visible */
+  width: 200px;
+  height: 200px;
+}
+
+/* Media queries */
+@media only screen and (max-width: 575px) {
+  /* For screens smaller than 576px */
+  .fit-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* For screens between 576px and 767px */
+  .fit-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* For screens between 768px and 991px */
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  /* For screens between 992px and 1199px */
+  .card-img-top {
+    width: 200px;
+    height: 200px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  /* For screens larger than 1199px */
+  .card-img-top {
+    width: 250px;
+    height: 250px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+  
   </style>
 </head>
 
