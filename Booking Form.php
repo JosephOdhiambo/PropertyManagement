@@ -56,14 +56,14 @@ if($eid=="")
 {
 header('location:Login.php');
 }
-$sql= mysqli_query($con,"select * from room_booking_details where email='$eid' "); 
+$sql= mysqli_query($con,"select * from property_booking_details where email='$eid' "); 
 $result=mysqli_fetch_assoc($sql);
 //print_r($result);
 extract($_REQUEST);
 error_reporting(1);
 if(isset($savedata))
 {
-  $sql= mysqli_query($con,"select * from room_booking_details where email='$email' and room_type='$room_type' ");
+  $sql= mysqli_query($con,"select * from property_booking_details where email='$email' and room_type='$room_type' ");
   if(mysqli_num_rows($sql)) 
   {
   $msg= "<h1 style='color:red'>You have already booked this room</h1>";    
@@ -71,7 +71,7 @@ if(isset($savedata))
   else
   {
 
-   $sql="insert into room_booking_details(name,email,phone,address,city,state,zip,contry,room_type,Occupancy,check_in_date,check_in_time,check_out_date) 
+   $sql="insert into property_booking_details(name,email,phone,address,city,state,zip,contry,room_type,Occupancy,check_in_date,check_in_time,check_out_date) 
   values('$name','$email','$phone','$address','$city','$state','$zip','$country',
   '$room_type','$Occupancy','$cdate','$ctime','$codate')";
    if(mysqli_query($con,$sql))
@@ -177,7 +177,7 @@ if(isset($savedata))
             <div class="form-group">
               <div class="row">
                 <div class="control-label col-sm-5">
-                  <h4>Property Type:</h4>
+                  <h4>Room Type:</h4>
                 </div>
                 <div class="col-sm-7">
                   <select class="form-control" name="room_type" required>
@@ -192,7 +192,7 @@ if(isset($savedata))
             <div class="form-group">
               <div class="row">
                 <div class="control-label col-sm-5">
-                  <h4>Enquiry Date :</h4>
+                  <h4>check In Date :</h4>
                 </div>
                 <div class="col-sm-7">
                   <input type="date" name="cdate" class="form-control" required>
@@ -205,7 +205,7 @@ if(isset($savedata))
             <div class="form-group">
               <div class="row">
                 <div class="control-label col-sm-5">
-                  <h4>Time of Enquiry:</h4>
+                  <h4>Check In Time:</h4>
                 </div>
                 <div class="col-sm-7">
                   <input type="time" name="ctime" class="form-control" required>
