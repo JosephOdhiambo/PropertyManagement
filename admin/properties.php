@@ -1,7 +1,7 @@
 <script>
-	function delRoom(id)
+	function delProperty(id)
 	{
-		if(confirm("You want to delete this Room ?"))
+		if(confirm("You want to delete this Property ?"))
 		{
 		window.location.href='delete_room.php?id='+id;	
 		}
@@ -10,7 +10,7 @@
 <table class="table table-bordered table-striped table-hover">
 	<h1>Property Details</h1><hr>
 	<tr>
-	<td colspan="8"><a href="dashboard.php?option=add_rooms" class="btn btn-primary">Add New Rooms</a></td>
+	<td colspan="8"><a href="dashboard.php?option=add_rooms" class="btn btn-primary">Add New Properties</a></td>
 	</tr>
 	<tr style="height:40">
 		<th>Sr No</th>
@@ -42,7 +42,7 @@ $path="../image/rooms/$img";
 		<td><a href="dashboard.php?option=update_room&id=<?php echo $id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
 
 		
-		<td><a href="#" onclick="delRoom('<?php echo $id; ?>')"><span class="glyphicon glyphicon-remove" style='color:red'></span></a></td>
+		<td><a href="#" onclick="delProperty('<?php echo $id; ?>')"><span class="glyphicon glyphicon-remove" style='color:red'></span></a></td>
 	</tr>	
 <?php 	
 }

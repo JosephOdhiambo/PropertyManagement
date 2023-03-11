@@ -1,17 +1,18 @@
 <?php 
 if(isset($add))
 {
-	$sql=mysqli_query($con,"select * from rooms where room_no='$rno'");
+	$sql=mysqli_query($con,"select * from properties where property_no='$rno'");
 	if(mysqli_num_rows($sql))
 	{
-	echo "this room is already added";	
+		echo "This property is already added";	
 	}		
 	else
 	{	
-	$img=$_FILES['img']['name'];
-	mysqli_query($con,"insert into rooms values('','$rno','$type','$price','$details','$img')");	
-	move_uploaded_file($_FILES['img']['tmp_name'],"../image/rooms/".$_FILES['img']['name']);
-	echo "Rooms added successfully";
+		$img=$_FILES['img']['name'];
+		$property_type = $_POST['property_type'];
+		mysqli_query($con,"insert into properties values('','$rno','$type','$price','$details','$img','$property_type')");	
+		move_uploaded_file($_FILES['img']['tmp_name'],"../image/rooms/".$_FILES['img']['name']);
+		echo "Property added successfully";
 	}
 }
 ?>
@@ -20,13 +21,13 @@ if(isset($add))
 <table class="table table-bordered">
 	
 	<tr>	
-		<th>Room No</th>
+		<th>Property No</th>
 		<td><input type="text" name="rno"  class="form-control"/>
 		</td>
 	</tr>
 	
 	<tr>	
-		<th>Room Type</th>
+		<th>Property Type</th>
 		<td><input type="text" name="type"  class="form-control"/>
 		</td>
 	</tr>
@@ -50,8 +51,18 @@ if(isset($add))
 	</tr>
 	
 	<tr>
+		<th>Apartment/House</th>
+		<td>
+			<select name="property_type" class="form-control">
+				<option value="Apartment">Apartment</option>
+				<option value="House">House</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
 		<td colspan="2">
-			<input type="submit" class="btn btn-primary" value="Add Room Details" name="add"/>
+			<input type="submit" class="btn btn-primary" value="Add Property Details" name="add"/>
 		</td>
 	</tr>
 </table> 

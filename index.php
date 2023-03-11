@@ -72,46 +72,55 @@ include('connection.php');
   ?>
 </div> <!--Room Info Start Here-->
 <section id="hero" class="d-flex align-items-center">
-    <div class="container" data-aos="zoom-out" data-aos-delay="100">
-      <h1>Welcome to <span>PropertyEnquiry</span></h1>
-      <h2>Streamline Your Property Inquiries with Our Efficient Property Enquiry System</h2>
-      <div class="d-flex">
-        <a href="#about" class="btn-get-started scrollto">Get Started</a>
-        <a href="https://www.youtube.com/watch?v=uySn1BZiWWs" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
-      </div>
+  <div class="container" data-aos="zoom-out" data-aos-delay="100">
+    <h1>Welcome to <span>PropertyEnquiry</span></h1>
+    <h2>Streamline Your Property Inquiries with Our Efficient Property Enquiry System</h2>
+    <div class="d-flex">
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+      <a href="https://www.youtube.com/watch?v=uySn1BZiWWs" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
     </div>
-  </section><!-- End Hero -->
+  </div>
+</section><!-- End Hero -->
 
-  <div class="container text-center" style="background-color: #f7f7f7; padding: 30px;">
+<div class="container text-center" style="background-color: #f7f7f7; padding: 30px;">
   <div class="row">
     <?php 
-    $sql=mysqli_query($con,"select * from properties");
-    while($r_res=mysqli_fetch_assoc($sql))
-    {
+    $sql = mysqli_query($con,"SELECT * FROM properties");
+    $apartments = '';
+    $houses = '';
+    while($r_res = mysqli_fetch_assoc($sql)) {
+      if($r_res['Apartment/House'] == 'Apartment') {
+        $apartments .= '<div class="col-md-4 mb-4">';
+        $apartments .= '<div class="card h-100">';
+        $apartments .= '<img src="image/rooms/'.$r_res['image'].'" class="card-img-top" alt="Image" id="img1">';
+        $apartments .= '<div class="card-body">';
+        $apartments .= '<h5 class="card-title text-danger">'.$r_res['type'].'</h5>';
+        $apartments .= '<p class="card-text">'.substr($r_res['details'],0,80)."...".'</p>';
+        $apartments .= '<a href="room_details.php?room_id='.$r_res['property_id'].'" class="btn btn-primary">View Details</a>';
+        $apartments .= '</div></div></div>';
+      } else {
+        $houses .= '<div class="col-md-4 mb-4">';
+        $houses .= '<div class="card h-100">';
+        $houses .= '<img src="image/rooms/'.$r_res['image'].'" class="card-img-top" alt="Image" id="img1">';
+        $houses .= '<div class="card-body">';
+        $houses .= '<h5 class="card-title text-danger">'.$r_res['type'].'</h5>';
+        $houses .= '<p class="card-text">'.substr($r_res['details'],0,80)."...".'</p>';
+        $houses .= '<a href="room_details.php?room_id='.$r_res['property_id'].'" class="btn btn-primary">View Details</a>';
+        $houses .= '</div></div></div>';
+      }
+    }
     ?>
-<div class="container text-center" style="background-color: #f7f7f7; padding: 2vw;">
-  <div class="row">
-    <?php 
-    $sql=mysqli_query($con,"select * from properties");
-    while($r_res=mysqli_fetch_assoc($sql))
-    {
-    ?>
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img src="image/rooms/<?php echo $r_res['image']; ?>" class="card-img-top" alt="Image" id="img1">
-        <div class="card-body">
-          <h5 class="card-title text-danger"><?php echo $r_res['type']; ?></h5>
-          <p class="card-text"><?php echo substr($r_res['details'],0,100); ?></p>
-          <a href="room_details.php?room_id=<?php echo $r_res['property_id']; ?>" class="btn btn-danger">Read more</a>
-        </div>
-      </div>
+    <div class="col-12 text-center mb-4">
+      <h3>Apartments</h3>
     </div>
-    <?php } ?>
+    <?php echo $apartments; ?>
+    <div class="col-12 text-center mt-5 mb-4">
+      <h3>Houses</h3>
+    </div>
+    <?php echo $houses; ?>
   </div>
 </div>
-    <?php } ?>
-  </div>
-</div>
+
 
 <?php
   include('Footer.php')
