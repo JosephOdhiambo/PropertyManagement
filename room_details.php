@@ -179,7 +179,7 @@
     <div class="row">
   <div class="col-sm-8">
     <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31910.46597242245!2d36.78693105913468!3d-1.2892786289790965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a0dfd90fa55%3A0x37f5057a6f21bc7c!2sKilimani%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1678541183863!5m2!1sen!2ske" allowfullscreen="" loading="lazy"></iframe>
+      <iframe class="embed-responsive-item" src="" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </div>
 </div>
