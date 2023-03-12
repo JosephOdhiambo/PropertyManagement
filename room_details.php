@@ -85,11 +85,9 @@
         <div class="row">
             <div class="col-sm-8">
                 <?php
-    // Connect to database
-    $conn = mysqli_connect("localhost", "root", "", "property");
-
+include('connection.php');
     // Check connection
-    if (!$conn) {
+    if (!$con) {
       die("Connection failed: " . mysqli_connect_error());
     }
 
@@ -98,7 +96,7 @@
 
     // Query the database for the details of the property with the given property_id
     $sql = "SELECT * FROM properties WHERE property_id = $property_id";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($con, $sql);
 
     if (mysqli_num_rows($result) > 0) {
       // Output the details of the property
@@ -127,7 +125,7 @@
     }
 
     // Close database connection
-    mysqli_close($conn);
+    mysqli_close($con);
   ?>
             </div>
             <div class="col-sm-4">
@@ -177,12 +175,19 @@
         </div>
     </div>
     <div class="row">
-  <div class="col-sm-8">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="" allowfullscreen="" loading="lazy"></iframe>
+        <div class="col-sm-8">
+            <?php
+            include('connection.php');
+            $sql = "SELECT location FROM properties WHERE property_id = $property_id";
+            $result = mysqli_query($con, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $location = $row['location'];            
+            ?>
+            <div class="embed-responsive embed-responsive-16by9">
+                <?php echo $location; ?>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
     </div>
 
