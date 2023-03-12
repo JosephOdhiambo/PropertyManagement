@@ -80,7 +80,7 @@
     <?php
     include('Menu Bar.php')
 ?>
-
+<div id="toast"></div>
     <div class="container-fluid" style="margin-top: 2%;">
         <div class="row">
             <div class="col-sm-8">
@@ -110,16 +110,19 @@ include('connection.php');
       echo '<tbody>';
       echo '<tr>';
       echo '<td>Price</td>';
-      echo '<td>$' . number_format($row['price']) . '</td>';
+      echo '<td>kshs ' . number_format($row['price']) . '</td>';
       echo '</tr>';
       echo '<tr>';
       echo '<td>Type</td>';
       echo '<td>' . $row['Apartment/House'] . '</td>';
       echo '</tr>';
+      echo '<tr>';
+      echo '<td colspan="2" class="text-center"><a href="Login.php" class="btn btn-primary btn-lg">Book Now</a></td>';
+      echo '</tr>';
       echo '</tbody>';
       echo '</table>';
       echo '</div>';
-      echo '</div>';
+      echo '</div>';      
     } else {
       echo "No property found.";
     }
@@ -174,19 +177,37 @@ include('connection.php');
 
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <?php
-            include('connection.php');
-            $sql = "SELECT location FROM properties WHERE property_id = $property_id";
-            $result = mysqli_query($con, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $location = $row['location'];            
-            ?>
-            <div class="embed-responsive embed-responsive-16by9">
-                <?php echo $location; ?>
+    <div class="row mb-3">
+        <div class="col-sm-8 mx-auto">
+            <div class="card bg-light">
+                <div class="card-header text-center">
+                    <h5 class="card-title">Location</h5>
+                </div>
+                <div class="card-body">
+                    <?php
+        include('connection.php');
+        $sql = "SELECT location FROM properties WHERE property_id = $property_id";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $location = $row['location'];            
+        ?>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <?php echo $location; ?>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- <div class="col-sm-6 mx-auto">
+    <div class="card bg-light">
+      <div class="card-header text-center">
+        <h5 class="card-title">Location</h5>
+      </div>
+      <div class="card-body">
+
+      </div>
+    </div>
+  </div> -->
     </div>
 
     </div>
@@ -204,8 +225,7 @@ include('connection.php');
     <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+
 </body>
 
 </html>
