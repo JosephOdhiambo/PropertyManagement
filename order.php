@@ -59,7 +59,7 @@ $eid=$_SESSION['create_account_logged_in'];
                </tr>
 
                <?php 
-$sql= mysqli_query($con,"select * from property_booking_details where email='$eid' "); 
+$sql= mysqli_query($con,"select * from property_booking_details where email='".$eid."' "); 
 while($result=mysqli_fetch_assoc($sql))
 {
 $oid=$result['id'];
