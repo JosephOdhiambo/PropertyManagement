@@ -40,7 +40,7 @@ $eid=$_SESSION['create_account_logged_in'];
   include('Menu Bar.php');
   ?>
 <div class="container-fluid"><!--Primary Id-->
-  <h1 class="text-center text-primary">[ Booking Details ]</h1><br>
+  <h1 class="text-center text-primary">Property Booking Details</h1><br>
   <div class="container">
     <div class="row">
         <table class="table table-striped table-bordered table-hover table-responsive"style="height:150px;">
@@ -50,11 +50,11 @@ $eid=$_SESSION['create_account_logged_in'];
                     <th>Mobile Number</th>
                     <th>Address</th>
                     <th>Contury</th>
-                    <th>Room Type</th>
-                    <th>Check In Date</th>
-                    <th>Check In Time</th>
-                    <th>Check Out Date</th>
-                    <th>Occupancy</th>
+                    <th>Property Type</th>
+                    <th>Viewing Date</th>
+                    <th>Appointment Date</th>
+                    <th>Purchase Date</th>
+                    <th>Bedrooms</th>
 					<th>Cancel</th>
                </tr>
 
