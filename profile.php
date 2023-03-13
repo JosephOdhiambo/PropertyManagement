@@ -51,7 +51,11 @@ $msg= "<h3 style='color:blue'>Profile Updated successfully</h3>";
      $result=mysqli_fetch_assoc($sql);
 ?>
 <div class="container-fluid"id="primary"><!--Primary Id-->
-  <center><h1 style="background-color:#ed2553;border-radius:50px;font-family: 'Baloo Bhai', cursive;box-shadow:5px 5px 9px blue;text-shadow:2px 2px#000;display:inline-block;">User Profile</h1></center><br>
+<div class="text-center my-4">
+    <h1 class="bg-danger rounded-pill p-3 shadow-sm text-white font-family-baloo">
+      User Profile
+    </h1>
+  </div>
   <div class="container">
     <div class="row">
 	<center><?php  echo $msg; ?></center>

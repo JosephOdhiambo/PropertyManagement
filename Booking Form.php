@@ -67,8 +67,24 @@ $result=mysqli_fetch_assoc($sql);
 //print_r($result);
 extract($_REQUEST);
 error_reporting(1);
-if(isset($savedata))
+$s = "SELECT * FROM create_account WHERE email = '$eid'";
+$res = mysqli_query($con, $s);
+if(isset($savedata) && mysqli_num_rows($res) > 0)
 {
+  // Get the first row
+  $row = mysqli_fetch_assoc($res);
+    
+  // Set the data to variables
+  $id = $row["id"];
+  $name = $row["name"];
+  $email = $row["email"];
+  $password = $row["password"];
+  $mobile = $row["mobile"];
+  $address = $row["address"];
+  $gender = $row["gender"];
+  $country = $row["country"];
+  $pictrure = $row["pictrure"];
+
   $sql= mysqli_query($con,"select * from property_booking_details where email='$email' and room_type='$room_type' ");
   if(mysqli_num_rows($sql)) 
   {
@@ -77,9 +93,9 @@ if(isset($savedata))
   else
   {
 
-   $sql="insert into property_booking_details(name,email,phone,address,city,state,zip,contry,room_type,Occupancy,check_in_date,check_in_time,check_out_date) 
-  values('$name','$email','$phone','$address','$city','$state','$zip','$country',
-  '$room_type','$Occupancy','$cdate','$ctime','$codate')";
+   $sql="insert into property_booking_details(name,email,phone,address,city,state,zip,contry,room_type,Occupancy,check_in_date,check_in_time,check_out_date,user_id) 
+  values('$name','$email','$phone','$address','$city','$state','$address','$country',
+  '$room_type','$Occupancy','$cdate','$ctime','$codate',(select id from create_account where email='".$eid."'))";
    if(mysqli_query($con,$sql))
    {
    $msg= "<h1 style='color:blue'>You have Successfully booked this room</h1><h2><a href='order.php'>View </a></h2>"; 
@@ -89,7 +105,7 @@ if(isset($savedata))
 ?>
   <div class="container-fluid text-center" id="primary">
     <!--Primary Id-->
-    <h1>[ BOOKING Form ]</h1><br>
+    <h1>Book an apartment</h1><br>
     <div class="container">
       <div class="row">
         <?php echo @$msg; ?>
@@ -114,8 +130,8 @@ if(isset($savedata))
                   <h4>Email :</h4>
                 </div>
                 <div class="col-sm-8">
-                  <input type="email" value="<?php echo $result['email']; ?>" class="form-control" name="email"
-                    placeholder="Enter Your Email-Id" required />
+                  <input type="email" value="<?php echo $eid; ?>" class="form-control" name="email"
+                    placeholder="Enter Your Email-Id" required readonly/>
                 </div>
               </div>
             </div>
@@ -183,7 +199,7 @@ if(isset($savedata))
             <div class="form-group">
               <div class="row">
                 <div class="control-label col-sm-5">
-                  <h4>Room Type:</h4>
+                  <h4>Property Type:</h4>
                 </div>
                 <div class="col-sm-7">
                   <select class="form-control" name="room_type" required>
@@ -198,7 +214,7 @@ if(isset($savedata))
             <div class="form-group">
               <div class="row">
                 <div class="control-label col-sm-5">
-                  <h4>check In Date :</h4>
+                  <h4>Property Viewing Date :</h4>
                 </div>
                 <div class="col-sm-7">
                   <input type="date" name="cdate" class="form-control" required>
@@ -211,7 +227,7 @@ if(isset($savedata))
             <div class="form-group">
               <div class="row">
                 <div class="control-label col-sm-5">
-                  <h4>Check In Time:</h4>
+                  <h4>Date of Appointment:</h4>
                 </div>
                 <div class="col-sm-7">
                   <input type="time" name="ctime" class="form-control" required>
@@ -223,7 +239,7 @@ if(isset($savedata))
             <div class="form-group">
               <div class="row">
                 <div class="control-label col-sm-5">
-                  <h4>Check Out Date :</h4>
+                  <h4>Date of Purchase :</h4>
                 </div>
                 <div class="col-sm-7">
                   <input type="date" name="codate" class="form-control" required>
@@ -235,7 +251,7 @@ if(isset($savedata))
             <div class="form-group">
               <div class="row">
                 <label class="control-label col-sm-5">
-                  <h4 id="top">Occupancy :</h4>
+                  <h4 id="top">Bedrooms :</h4>
                 </label>
                 <div class="col-sm-7">
                   <div class="radio-inline"><input type="radio" value="single" name="Occupancy" required>Single</div>

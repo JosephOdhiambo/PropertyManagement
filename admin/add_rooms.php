@@ -1,21 +1,27 @@
 <?php 
 if(isset($add))
 {
-	$sql=mysqli_query($con,"select * from properties where property_no='$rno'");
-	if(mysqli_num_rows($sql))
-	{
-		echo "This property is already added";	
-	}		
-	else
-	{	
-		$img=$_FILES['img']['name'];
-		$property_type = $_POST['property_type'];
-		mysqli_query($con,"insert into properties values('','$rno','$type','$price','$details','$img','$property_type')");	
-		move_uploaded_file($_FILES['img']['tmp_name'],"../image/rooms/".$_FILES['img']['name']);
-		echo "Property added successfully";
-	}
+    $rno = mysqli_real_escape_string($con, $_POST['rno']);
+    $sql=mysqli_query($con,"select * from properties where property_no='$rno'");
+    if(mysqli_num_rows($sql))
+    {
+        echo "This property is already added";    
+    }       
+    else
+    {   
+        $img=$_FILES['img']['name'];
+        $type = mysqli_real_escape_string($con, $_POST['type']);
+        $price = mysqli_real_escape_string($con, $_POST['price']);
+        $details = mysqli_real_escape_string($con, $_POST['details']);
+        $location = mysqli_real_escape_string($con, $_POST['location']);
+        $property_type = mysqli_real_escape_string($con, $_POST['property_type']);
+        mysqli_query($con,"insert into properties(property_no,type,price,details,image,`Apartment/House`,location) values('$rno','$type','$price','$details','$img','$property_type','$location')") or die(mysqli_error($con));   
+        move_uploaded_file($_FILES['img']['tmp_name'],"../image/rooms/".$_FILES['img']['name']);
+        echo "Property added successfully";
+    }
 }
 ?>
+
 
 <form method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
@@ -57,6 +63,12 @@ if(isset($add))
 				<option value="Apartment">Apartment</option>
 				<option value="House">House</option>
 			</select>
+		</td>
+	</tr>
+
+	<tr>	
+		<th>Location</th>
+		<td><input type="text" name="location"  class="form-control"/>
 		</td>
 	</tr>
 	

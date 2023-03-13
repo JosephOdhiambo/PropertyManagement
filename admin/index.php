@@ -15,7 +15,7 @@ if(isset($login))
 		if(mysqli_num_rows($sql))
 		{
 		$_SESSION['admin_logged_in']=$eid;	
-		header('location:dashboard.php');	
+		header('location:dashboard.php?option=admin_profile');	
 		}
 		else
 		{
