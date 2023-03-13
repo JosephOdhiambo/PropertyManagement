@@ -1,13 +1,13 @@
-<?php 
+<?php
 if(isset($update))
 {
-$sql=mysqli_query($con,"select * from admin where username='$admin' and password='$op' ");
+	$sql=mysqli_query($con,"select * from admin where username='$admin' and password='$op'");
 	if(mysqli_num_rows($sql))
 	{
 		if($np==$cp)
 		{
-		mysqli_query($con,"update admin set password='$np' where username='$admin' ");	
-		echo "<h3 style='color:blue'>Password updated successfully</h3>";
+			mysqli_query($con,"update admin set password='$np' where username='$admin' ");
+			echo "<h3 style='color:blue'>Password updated successfully</h3>";
 		}
 		else
 		{
@@ -16,35 +16,39 @@ $sql=mysqli_query($con,"select * from admin where username='$admin' and password
 	}
 	else
 	{
-	echo "<h3 style='color:red'>Old Password doesn't match</h3>";	
+		echo "<h3 style='color:red'>Old Password doesn't match</h3>";
 	}
-	
 }
+
+// retrieve the current password and load it into the old password field
+$sql = mysqli_query($con, "SELECT password FROM admin WHERE username='$admin'");
+$row = mysqli_fetch_assoc($sql);
+$current_password = $row['password'];
 ?>
+
 <form method="post" enctype="multipart/form-data">
-<table class="table table-bordered table-striped table-hover">
-	<h1>Update Password</h1><hr>
-	<tr style="height:40">
-		<th>Enter Your old Password</th>
-		<td><input type="password" name="op" class="form-control"required/></td>
-	</tr>
-	
-	<tr>	
-		<th>Enter Your New Password</th>
-		<td><input type="password" name="np" class="form-control"required/>
-		</td>
-	</tr>
-	
-	<tr>	
-		<th>Enter Your Confirm Password</th>
-		<td><input type="password" name="cp" class="form-control"required/>
-		</td>
-	</tr>
-	
-	<tr>
-		<td colspan="2" align="center">
-			<input type="submit" class="btn btn-primary" value="Update Password" name="update"required/>
-		</td>
-	</tr>
-</table> 
+	<table class="table table-bordered table-striped table-hover">
+		<h1>Update Password</h1>
+		<hr>
+		<tr style="height:40">
+			<th>Enter Your old Password</th>
+			<td><input type="password" name="op" class="form-control" value="<?php echo $current_password; ?>" required/></td>
+		</tr>
+
+		<tr>
+			<th>Enter Your New Password</th>
+			<td><input type="password" name="np" class="form-control" required/></td>
+		</tr>
+
+		<tr>
+			<th>Enter Your Confirm Password</th>
+			<td><input type="password" name="cp" class="form-control" required/></td>
+		</tr>
+
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" class="btn btn-primary" value="Update Password" name="update" required/>
+			</td>
+		</tr>
+	</table>
 </form>

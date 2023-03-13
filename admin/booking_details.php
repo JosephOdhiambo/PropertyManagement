@@ -1,6 +1,6 @@
 
 <table class="table table-bordered table-striped table-hover">
-	<h1>Room Booking Details</h1><hr>
+	<h1>Property Enquiry Details</h1><hr>
 	<tr>
 		<th>Sr No</th>
 		<th>Name</th>
@@ -17,7 +17,7 @@
 
 <?php 
 $i=1;
-$sql=mysqli_query($con,"select * from room_booking_details");
+$sql=mysqli_query($con,"select * from property_booking_details");
 while($res=mysqli_fetch_assoc($sql))
 {
 $oid=$res['id'];

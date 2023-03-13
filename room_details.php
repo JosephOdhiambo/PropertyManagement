@@ -78,7 +78,8 @@
 
 <body>
     <?php
-    include('Menu Bar.php')
+    include('Menu Bar.php');
+    include('internetconnection.php');
 ?>
 <div id="toast"></div>
     <div class="container-fluid" style="margin-top: 2%;">

@@ -1,13 +1,19 @@
 <?php
 include('connection.php');
+
 // Select distinct room types from the properties table
-$sql = "SELECT DISTINCT `type` FROM `properties`";
+$sql = "SELECT DISTINCT `type`, `Apartment/House` FROM `properties` ORDER BY `Apartment/House`, `type`";
 $result = $con->query($sql);
 
-// Build the select box options
+// Build the select box options grouped by type and Apartment/House
 $options = '';
+$current_title = '';
 if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
+    if ($current_title != $row['Apartment/House']) {
+      $options .= '<optgroup label="' . $row['Apartment/House'] . '">';
+      $current_title = $row['Apartment/House'];
+    }
     $options .= '<option>' . $row["type"] . '</option>';
   }
 }
